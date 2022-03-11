@@ -4,3 +4,9 @@ export enum MeetingTopics {
   RELATIONSHIPS = 'relationships',
   NEURODIVERGENCE = 'neurodivergence',
 }
+
+export enum Actions {
+  CREATE = 'create',
+  ADD_NOTE = 'add_note',
+  FINISH = 'finish',
+}
