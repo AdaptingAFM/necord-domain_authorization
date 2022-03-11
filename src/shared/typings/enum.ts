@@ -7,6 +7,5 @@ export enum MeetingTopics {
 
 export enum Actions {
   CREATE = 'create',
-  ADD_NOTE = 'add_note',
-  FINISH = 'finish',
+  UPDATE = 'update',
 }
