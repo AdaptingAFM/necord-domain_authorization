@@ -31,7 +31,8 @@ export class SlashCommandsAuthGuard implements CanActivate {
       interaction.options.getString('as_user', true),
     );
 
-    if (!usr) throw new DiscordUnauthorized(interaction);
+    if (!usr)
+      throw new DiscordUnauthorized('Given user was not a member of the app.');
 
     const usr_abilities = this.casl.createForUser(usr);
 
@@ -42,7 +43,7 @@ export class SlashCommandsAuthGuard implements CanActivate {
     )
       return true;
 
-    throw new DiscordUnauthorized(interaction);
+    throw new DiscordUnauthorized('Given membmer was not allowed to do this.');
   }
 
   private execAuthorizationHandler(
