@@ -1,3 +1,5 @@
+import { AUTHORIZATION_METADATA_KEY } from './../decorators/authorization.decorator';
+import { AppAbility, AuthorizationHandler } from 'src/shared';
 import { CanActivate, ExecutionContext, Inject } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { CommandInteraction } from 'discord.js';
@@ -15,6 +17,22 @@ export class SlashCommandsAuthGuard implements CanActivate {
     const [interaction] =
       NecordExecutionContext.create(context).getContext<CommandInteraction[]>();
 
-    return true;
+    const abilities_required =
+      this.reflector.get<AuthorizationHandler[]>(
+        AUTHORIZATION_METADATA_KEY,
+        context.getHandler(),
+      ) || [];
+
+    return false;
+  }
+
+  private execAuthorizationHandler(
+    handler: AuthorizationHandler,
+    ability: AppAbility,
+  ) {
+    if (typeof handler === 'function') {
+      return handler(ability);
+    }
+    return handler.handle(ability);
   }
 }
