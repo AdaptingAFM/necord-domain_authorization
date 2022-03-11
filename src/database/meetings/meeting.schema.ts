@@ -1,5 +1,5 @@
 import { Coach, User } from '../users';
-import { IMeeting, IUser, MeetingTopics } from 'src/shared';
+import { IMeeting, MeetingTopics } from 'src/shared';
 
 export class Meeting implements IMeeting {
   id: string;

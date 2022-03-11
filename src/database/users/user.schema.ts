@@ -5,22 +5,23 @@ export class User implements IUser {
   premium: boolean;
   snowflake: string;
   name: string;
+  isCoach: boolean;
 
-  constructor({ premium, snowflake, name }: User) {
+  constructor({ premium, snowflake, name, isCoach = false }: User) {
     this.name = name;
     this.snowflake = snowflake;
     this.premium = premium;
+    this.isCoach = isCoach;
   }
 }
 
 export class Coach extends User implements ICoach {
-  real_name: string;
   snowflake: string;
   premium: boolean;
   name: string;
+  isCoach: true;
 
-  constructor({ premium, snowflake, name, real_name }: Coach) {
-    super({ premium, snowflake, name });
-    this.real_name = real_name;
+  constructor({ premium, snowflake, name, isCoach }: Coach) {
+    super({ premium, snowflake, name, isCoach: true });
   }
 }

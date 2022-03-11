@@ -15,7 +15,7 @@ export class CreateCommands {
     @Context() [interaction]: [CommandInteraction],
     @Options() new_usr: CreateUserDto,
   ): Promise<void> {
-    const tmp = this.users.create({ ...new_usr });
+    const tmp = this.users.createUser({ ...new_usr, isCoach: false });
 
     if (tmp)
       return await interaction.reply({
@@ -33,9 +33,9 @@ export class CreateCommands {
   @SlashCommand('coach', 'Create a new coach.')
   public async createCoach(
     @Context() [interaction]: [CommandInteraction],
-    @Options() new_usr: CreateCoachDto,
+    @Options() new_coach: CreateCoachDto,
   ): Promise<void> {
-    const tmp = this.users.create({ ...new_usr });
+    const tmp = this.users.createCoach({ ...new_coach, isCoach: true });
 
     if (tmp)
       return await interaction.reply({

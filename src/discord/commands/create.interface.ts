@@ -1,4 +1,4 @@
-import { BooleanOption, NumberOption, StringOption } from 'necord';
+import { BooleanOption, StringOption } from 'necord';
 import { Coach, User } from 'src/database';
 
 export class CreateUserDto implements User {
@@ -22,6 +22,8 @@ export class CreateUserDto implements User {
     required: true,
   })
   name: string;
+
+  isCoach: false;
 }
 
 export class CreateCoachDto implements Coach {
@@ -46,10 +48,5 @@ export class CreateCoachDto implements Coach {
   })
   name: string;
 
-  @StringOption({
-    name: 'coach_name',
-    description: 'Name for this coach.',
-    required: true,
-  })
-  real_name: string;
+  isCoach: true;
 }
