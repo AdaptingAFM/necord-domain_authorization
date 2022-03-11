@@ -1,7 +1,8 @@
+import { ICoach } from 'src/shared';
 import { IUser } from 'src/shared';
 
 export class User implements IUser {
-  premium: number;
+  premium: boolean;
   snowflake: string;
   name: string;
 
@@ -9,5 +10,17 @@ export class User implements IUser {
     this.name = name;
     this.snowflake = snowflake;
     this.premium = premium;
+  }
+}
+
+export class Coach extends User implements ICoach {
+  real_name: string;
+  snowflake: string;
+  premium: boolean;
+  name: string;
+
+  constructor({ premium, snowflake, name, real_name }: Coach) {
+    super({ premium, snowflake, name });
+    this.real_name = real_name;
   }
 }

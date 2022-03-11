@@ -1,5 +1,5 @@
 export interface IUser {
   snowflake: string;
-  premium: number;
+  premium: boolean;
   name: string;
 }

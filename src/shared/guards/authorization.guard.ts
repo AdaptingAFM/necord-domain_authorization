@@ -20,8 +20,7 @@ export class SlashCommandsAuthGuard implements CanActivate {
   public canActivate(context: ExecutionContext): boolean {
     const [interaction] =
       NecordExecutionContext.create(context).getContext<CommandInteraction[]>();
-
-    const abilities_required =
+    const required_abilities =
       this.reflector.get<AuthorizationHandler[]>(
         AUTHORIZATION_METADATA_KEY,
         context.getHandler(),
@@ -37,7 +36,7 @@ export class SlashCommandsAuthGuard implements CanActivate {
     const usr_abilities = this.casl.createForUser(usr);
 
     if (
-      abilities_required.every((requirement) =>
+      required_abilities.every((requirement) =>
         this.execAuthorizationHandler(requirement, usr_abilities),
       )
     )

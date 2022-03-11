@@ -1,7 +1,13 @@
 import { Injectable, Inject, UseGuards } from '@nestjs/common';
 import { CommandInteraction, MessageEmbed } from 'discord.js';
 import { Guilds, SlashGroup, SlashCommand, Context, Options } from 'necord';
-import { UsersService, Meeting, MeetingsService } from 'src/database';
+import {
+  UsersService,
+  Meeting,
+  MeetingsService,
+  Coach,
+  User,
+} from 'src/database';
 import { AppAbility, Actions, AuthorizationRequire } from 'src/shared';
 import { SlashCommandsAuthGuard } from 'src/shared/guards/authorization.guard';
 import {
@@ -42,8 +48,8 @@ export class ActCommands {
 
     const mtn = this.meetings.create({
       ...dto,
-      user: usr,
-      coach: coach,
+      user: usr as User,
+      coach: coach as Coach,
       finished: false,
       notes: '',
     });

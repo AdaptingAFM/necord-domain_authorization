@@ -1,9 +1,10 @@
+import { Coach, User } from '../users';
 import { IMeeting, IUser, MeetingTopics } from 'src/shared';
 
 export class Meeting implements IMeeting {
-  user: IUser;
-  coach: IUser;
   id: string;
+  user: User;
+  coach: Coach;
   topic: MeetingTopics;
   finished: boolean;
   notes: string;
