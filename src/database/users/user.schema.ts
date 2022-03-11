@@ -8,6 +8,6 @@ export class User implements IUser {
   constructor({ premium, snowflake, name }: User) {
     this.name = name;
     this.snowflake = snowflake;
-    this.name = name;
+    this.premium = premium;
   }
 }
