@@ -20,4 +20,18 @@ export class MeetingsService {
 
     return new_usr;
   }
+
+  public update(dto: Meeting): Meeting | null {
+    let mtn = this.meetings.find((m) => m.id === dto.id);
+
+    if (!mtn) return null;
+
+    const idx = this.meetings.indexOf(mtn);
+
+    this.meetings.splice(idx, 1);
+    mtn = { ...dto };
+    this.meetings.push(mtn);
+
+    return mtn;
+  }
 }
