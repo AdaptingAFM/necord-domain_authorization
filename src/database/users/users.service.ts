@@ -15,7 +15,7 @@ export class UsersService {
     const new_usr = new User(dto);
 
     this.users.push(new_usr);
-    
+
     return new_usr;
   }
 }
