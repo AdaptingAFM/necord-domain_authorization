@@ -22,6 +22,11 @@ export class CaslAbilityFactory {
 
     if (usr.premium > 0) {
       allow(Actions.CREATE, Meeting, { user: usr, coach: { $ne: usr } });
+      allow(Actions.UPDATE, Meeting, ['finished'], { user: usr });
+      allow(Actions.UPDATE, Meeting, ['notes', 'finished'], {
+        coach: usr,
+        user: { $ne: usr },
+      });
     }
 
     return build({
