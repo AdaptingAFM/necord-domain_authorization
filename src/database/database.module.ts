@@ -3,7 +3,16 @@ import { Module } from '@nestjs/common';
 import { UsersService } from './users';
 
 @Module({
-  providers: [UsersService, MeetingsService],
+  providers: [
+    {
+      provide: 'SRV:USERS',
+      useClass: UsersService,
+    },
+    {
+      provide: 'SRV:MEETINGS',
+      useClass: MeetingsService,
+    },
+  ],
   exports: [
     {
       provide: 'SRV:USERS',

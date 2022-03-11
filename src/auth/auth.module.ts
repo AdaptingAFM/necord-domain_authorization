@@ -5,7 +5,10 @@ import { Module } from '@nestjs/common';
 
 @Module({
   imports: [DatabaseModule],
-  providers: [AuthService, CaslAbilityFactory],
+  providers: [
+    { provide: 'SRV:AUTH', useClass: AuthService },
+    { provide: 'SRV:CASL', useClass: CaslAbilityFactory },
+  ],
   exports: [
     { provide: 'SRV:AUTH', useClass: AuthService },
     { provide: 'SRV:CASL', useClass: CaslAbilityFactory },

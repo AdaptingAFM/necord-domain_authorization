@@ -23,6 +23,8 @@ export class SlashCommandsAuthGuard implements CanActivate {
         context.getHandler(),
       ) || [];
 
+    console.log(interaction);
+
     return false;
   }
 

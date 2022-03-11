@@ -1,4 +1,6 @@
+import { ActCommands } from './commands/act.commands';
 import { AuthModule } from './../auth/auth.module';
+import { CreateCommands } from './commands';
 import { DatabaseModule } from 'src/database';
 import { Intents } from 'discord.js';
 import { Module } from '@nestjs/common';
@@ -17,6 +19,6 @@ import { NecordModule } from 'necord';
       ],
     }),
   ],
-  providers: [],
+  providers: [ActCommands, CreateCommands],
 })
 export class DiscordModule {}
