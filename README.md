@@ -26,6 +26,13 @@
 
 Example of guarding a [Necord](https://github.com/SocketSomeone/necord) interaction with domain authorization logic.
 
+Things that could be done better:
+   + Structurized DTO's with @nestjs/mapped-types; per-field validation and exception with class-validator.
+   + Passing more metadata to the authguard for it to be smarter and capable of handling all possible discord interactions.
+   + Domain Entities.
+   + Single Responsibility Rule within most of the methods that the end user interacts with.
+   + Figure a workaround to [this issue](https://github.com/nestjs/nest/issues/9017)
+
 ## Installation
 
 ```bash
