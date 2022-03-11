@@ -1,5 +1,9 @@
 import { AUTHORIZATION_METADATA_KEY } from './../decorators/authorization.decorator';
-import { AppAbility, AuthorizationHandler } from 'src/shared';
+import {
+  AppAbility,
+  AuthorizationHandler,
+  DiscordUnauthorized,
+} from 'src/shared';
 import { CanActivate, ExecutionContext, Inject } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { CommandInteraction } from 'discord.js';
@@ -23,9 +27,22 @@ export class SlashCommandsAuthGuard implements CanActivate {
         context.getHandler(),
       ) || [];
 
-    console.log(interaction);
+    const usr = this.auth.findBySnowflake(
+      interaction.options.getString('as_user', true),
+    );
 
-    return false;
+    if (!usr) throw new DiscordUnauthorized(interaction);
+
+    const usr_abilities = this.casl.createForUser(usr);
+
+    if (
+      abilities_required.every((requirement) =>
+        this.execAuthorizationHandler(requirement, usr_abilities),
+      )
+    )
+      return true;
+
+    throw new DiscordUnauthorized(interaction);
   }
 
   private execAuthorizationHandler(
