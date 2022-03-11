@@ -24,12 +24,14 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Example of guarding a [Necord](https://github.com/SocketSomeone/necord) interaction with domain authorization logic.
 
 ## Installation
 
 ```bash
 $ npm install
+
+./.env => TOKEN=YOUR_DISCORD_TOKEN, GUILD=YOUR_DISCORD_GUILD 
 ```
 
 ## Running the app
@@ -43,19 +45,6 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
 ## Support
